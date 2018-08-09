@@ -1,0 +1,35 @@
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class MouseMoveTask extends JPanel {
+	private JTextField xData = new JTextField(5);
+	private JTextField yData = new JTextField(5); 
+	private JButton okButton = new JButton("추가");
+	private JLabel sumary = new JLabel("마우스 이동 작업 추가");
+	private JLabel x = new JLabel("X :");
+	private JLabel y = new JLabel("Y :");
+	
+	public MouseMoveTask() {
+		setLayout(null);
+		setPreferredSize(new Dimension(300,75));
+		
+		add(xData);
+		add(yData);
+		add(x);
+		add(y);
+		add(okButton);
+		add(sumary);
+		
+		x.setBounds(5,35,20,30);
+		xData.setBounds(30,35,85,30);
+		y.setBounds(120,35,20,30);
+		yData.setBounds(145,35,85,30);
+		okButton.setBounds(235,35,50,30);
+		sumary.setBounds(5,0,285,30);
+	}
+}

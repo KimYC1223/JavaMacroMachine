@@ -1,0 +1,32 @@
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.*;
+
+public class FindPostionPanel extends JFrame {
+	public FindPostionPanel() {
+		KeyPanel p = new KeyPanel();
+		setContentPane(p); // KeyPanel설정
+		setUndecorated(true);
+		setBackground(new Color(1.0f,1.0f,1.0f,0.5f));
+		setSize(1920, 1080); // size
+		setVisible(true); // 표시여부
+		p.requestFocus(); // 권한 요청
+
+	}
+
+	class KeyPanel extends JPanel {
+		JLabel la = new JLabel("키값이 입력될 위치"); // 레이블 생성
+
+		public KeyPanel() { // 패널 생성자
+			add(la); // 레이블 추가
+			this.addKeyListener(new KeyAdapter() {
+				public void keyPressed(KeyEvent e) { // 키가 눌렷을때의 이벤트
+					if ( e.getKeyCode() == KeyEvent.VK_ESCAPE )
+						dispose();
+				}
+			});
+		}
+	}
+
+}

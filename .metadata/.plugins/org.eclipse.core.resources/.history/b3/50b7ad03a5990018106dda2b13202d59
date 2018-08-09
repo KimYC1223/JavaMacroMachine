@@ -1,0 +1,59 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import javax.swing.event.*;
+
+
+public class Main extends JFrame {
+	public ArrayList<Task> myTaskList = new ArrayList<Task>();
+	
+	Main() {
+		MainPanel mainPanel = new MainPanel();
+		this.setContentPane(mainPanel);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle("Target Generator Macro - KYC");
+		this.setVisible(true);
+		this.pack();
+		
+	}
+	
+	public static void main(String args[]) {
+		new Main();
+		
+	}
+	
+	class MainPanel extends JPanel {
+		public JButton showFinder = new JButton("마우스 파인더");
+		public JButton saveButton = new JButton("작업 저장");
+		public JButton loadButton = new JButton("작업 로드");
+		public JButton taskAddButton = new JButton("작업 추가");
+		public JButton taskRemoveButton = new JButton("작업 제거");
+		public JTextArea jobText = new JTextArea(10,28);
+		JScrollPane jobScroll = new JScrollPane(jobText);
+		//=========================================================
+		// 	Main Panel
+		//=========================================================
+		MainPanel(){
+			setPreferredSize(new Dimension(350,500));
+			setLayout(null);
+			
+			add(showFinder);
+			showFinder.addActionListener(new FinderListener());
+			showFinder.setBounds(10,210,330,10);
+			
+			add (jobScroll);
+			jobScroll.setBounds(10,10,330,200);
+			jobText.setEditable(false);
+		}
+		
+		//=========================================================
+		//  Show Finder Button
+		//=========================================================
+		class FinderListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				new FindPostionPanel();
+			}
+		}
+	}
+}

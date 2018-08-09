@@ -1,0 +1,47 @@
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.event.*;
+
+public class FindPostionPanel extends JFrame {
+	public KeyPanel p = new KeyPanel();
+	
+	public FindPostionPanel() {
+		setContentPane(p); // KeyPanel설정
+		setUndecorated(true);
+		setBackground(new Color(1.0f,1.0f,1.0f,0.5f));
+		setVisible(true);
+		pack();
+		setSize(1920, 1080); // size
+		p.requestFocus(); // 권한 요청
+
+	}
+
+	class KeyPanel extends JPanel {
+		JLabel la = new JLabel("Mouse Position"); // 레이블 생성
+
+		public KeyPanel() { // 패널 생성자
+			add(la); // 레이블 추가
+			this.addKeyListener(new KeyAdapter() {
+				public void keyPressed(KeyEvent e) { // 키가 눌렷을때의 이벤트
+					if ( e.getKeyCode() == KeyEvent.VK_ESCAPE )
+						dispose();
+				}
+			});
+			this.addMouseMotionListener(new MyMouseMotionListener());
+		}
+		
+		class MyMouseMotionListener extends MouseMotionAdapter{
+			public void mouseMoved(MouseEvent e) {
+	            la.setText("MouseMoved("+e.getX()+","+e.getY()+") / Close = ESC or Alt+Tab");
+	        }
+		}
+	}
+
+}

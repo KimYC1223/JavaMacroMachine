@@ -1,0 +1,42 @@
+public class Task {
+	public static enum TYPE {
+			MOUSE_MOVE_TASK,
+			MOUSE_CLICK_TASK,
+			MOUSE_WHEEL_TASK,
+			KEYBOARD_INPUT_TASK,
+			STRING_INPUT_TASK,
+			SET_VARIABLE_TASK,
+			INCREASE_VARIABLE_TASK}
+			
+	public Task(TYPE taskType) {
+		switch(taskType) {
+			case MOUSE_MOVE_TASK :
+		
+				break;
+			
+			case MOUSE_CLICK_TASK :
+				
+				break;
+				
+			case MOUSE_WHEEL_TASK :
+				
+				break;
+				
+			case KEYBOARD_INPUT_TASK :
+				
+				break;
+				
+			case STRING_INPUT_TASK :
+				
+				break;
+				
+			case SET_VARIABLE_TASK :
+				
+				break;
+		
+			case INCREASE_VARIABLE_TASK :
+				
+				break;
+		}
+	}
+}

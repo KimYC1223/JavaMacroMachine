@@ -1,0 +1,84 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import javax.swing.event.*;
+
+
+public class Main extends JFrame {
+	public ArrayList<Task> myTaskList = new ArrayList<Task>();
+	
+	Main() {
+		MainPanel mainPanel = new MainPanel();
+		this.setContentPane(mainPanel);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle("Target Generator Macro - KYC");
+		this.setVisible(true);
+		this.pack();
+		
+	}
+	
+	public static void main(String args[]) {
+		new Main();
+		
+	}
+	
+	class MainPanel extends JPanel {
+		public JLabel label1 = new JLabel("수행할 작업들");
+		public JLabel label2 = new JLabel("SRC");
+		public JLabel label3 = new JLabel("수행할 작업들");
+		public JLabel label4 = new JLabel("수행할 작업들");
+		
+		public JButton showFinder = new JButton("마우스 파인더");
+		public JButton saveButton = new JButton("작업 저장");
+		public JButton loadButton = new JButton("작업 로드");
+		public JButton taskAddButton = new JButton("작업 추가");
+		public JButton taskRemoveButton = new JButton("작업 제거");
+		public JButton taskMoveButton = new JButton("작업 이동");
+		public JButton taskEditButton = new JButton("작업 수정");
+		public JTextArea jobText = new JTextArea(10,28);
+		JScrollPane jobScroll = new JScrollPane(jobText);
+		//=========================================================
+		// 	Main Panel
+		//=========================================================
+		MainPanel(){
+			setPreferredSize(new Dimension(350,500));
+			setLayout(null);
+			
+			add(label1);
+			label1.setBounds(10,0,330,30);
+			
+			add(saveButton);
+			saveButton.setBounds(10, 260, 165, 30);
+			add(loadButton);
+			loadButton.setBounds(175, 260, 165, 30);
+			
+			add(taskAddButton);
+			taskAddButton.setBounds(10, 290, 165, 30);
+			add(taskRemoveButton);
+			taskRemoveButton.setBounds(175, 290, 165, 30);
+			
+			add(taskMoveButton);
+			taskMoveButton.setBounds(10, 320, 165, 30);
+			add(taskEditButton);
+			taskEditButton.setBounds(175, 320, 165, 30);
+			
+			add(showFinder);
+			showFinder.addActionListener(new FinderListener());
+			showFinder.setBounds(10,350,330,30);
+			
+			add (jobScroll);
+			jobScroll.setBounds(10,30,330,230);
+			jobText.setEditable(false);
+		}
+		
+		//=========================================================
+		//  Show Finder Button
+		//=========================================================
+		class FinderListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				new FindPostionPanel();
+			}
+		}
+	}
+}

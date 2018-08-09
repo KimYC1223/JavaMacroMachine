@@ -1,0 +1,130 @@
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class AddTaskForm extends JFrame{
+	public AddPanel addPanel = new AddPanel();
+	
+	public AddTaskForm() {
+		setContentPane(addPanel);
+		setResizable(false);
+		setSize(100,150);
+		pack();
+		setVisible(true);
+	}
+	
+	class AddPanel extends JPanel {
+		private String[] dropdownItem = {
+			"INCREASE_VARIABLE_TASK",
+			"MOUSE_MOVE_TASK",
+			"MOUSE_CLICK_TASK",
+			"MOUSE_WHEEL_TASK",
+			"KEYBOARD_INPUT_TASK",
+			"STRING_INPUT_TASK",
+			"SET_VARIABLE_TASK",
+			"WAIT_TASK"				
+		};
+		public JComboBox selection = new JComboBox(dropdownItem);
+		public JTextArea ta = new JTextArea(10,20);
+		public JScrollPane sp = new JScrollPane(ta);
+		private JButton okButton = new JButton("생성");
+		
+		AddPanel() {
+			add(selection);
+			add(okButton);
+			add(sp);
+			
+			selection.setBounds(10,5,60,30);
+			selection.addItemListener(new DropdownListener());
+			
+			okButton.setBounds(70,5,20,30);
+			ta.setEditable(false);
+			
+			sp.setBounds(10, 50, 80, 20);
+			okButton.addActionListener(new AddingButtonListener());
+		}
+		
+		
+		//=========================================================
+		//	ITEM DESCRIPTION
+		//=========================================================
+		class DropdownListener implements ItemListener{
+			public void itemStateChanged(ItemEvent e) {
+				switch(e.getStateChange()) {
+				case 1 :
+					ta.setText("하이"+"\n");
+					ta.append("test");
+					break;
+				case 2 :
+					
+					break;
+				case 3 :
+					
+					break;
+				case 4 :
+					
+					break;
+				case 5 :
+					
+					break;
+				case 6 :
+					
+					break;
+				case 7 :
+					
+					break;
+				case 8 :
+					
+					break;
+				}
+			}
+		}
+		
+		
+		//=========================================================
+		//	BUTTON LISTENER
+		//=========================================================
+		class AddingButtonListener implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				switch (selection.getSelectedItem().toString()) {
+				case "INCREASE_VARIABLE_TASK" :
+					System.out.println("1");
+					break;
+				case "MOUSE_MOVE_TASK" :
+					System.out.println("2");
+					break;
+				case "MOUSE_CLICK_TASK" :
+					System.out.println("3");
+					break;
+				case "MOUSE_WHEEL_TASK" :
+					
+					break;
+				case "KEYBOARD_INPUT_TASK" :
+					
+					break;
+				case "STRING_INPUT_TASK" :
+					
+					break;
+				case "SET_VARIABLE_TASK" :
+					
+					break;
+				case "WAIT_TASK" :
+					
+					break;
+					
+				}
+			}
+			
+		}
+	}
+
+}

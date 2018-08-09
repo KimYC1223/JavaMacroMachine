@@ -1,0 +1,64 @@
+import java.awt.Dimension;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+//==================================================================================================
+//	Mouse Click Task Form
+//	마우스 클릭 또는 누르기 떼기를 하는 작업
+//==================================================================================================
+public class MouseClickTask extends JPanel {
+	//==============================================================================================
+	//	JComponents Declare
+	//==============================================================================================
+	private String[] stringArray = {"오른쪽 버튼","왼쪽 버튼","휠 버튼"};
+	private JRadioButton isClick = new JRadioButton();
+	private JRadioButton isPress = new JRadioButton();
+	private JRadioButton isRelease = new JRadioButton();
+	private ButtonGroup BG = new ButtonGroup();
+	private JComboBox<String> selectVariable = new JComboBox(stringArray);
+	private JTextField varDelta = new JTextField(5); 
+	private JButton okButton = new JButton("추가");
+	private JLabel sumary = new JLabel("변수 증감 작업 추가");
+	
+	//==============================================================================================
+	//	CONSTRUCTOR
+	//==============================================================================================
+	public MouseClickTask() {
+		//==========================================================================================
+		//	Layout Setting
+		//==========================================================================================
+		setLayout(null);
+		setPreferredSize(new Dimension(300,75));
+		
+		
+		//==============================================================================================
+		//	Adding Components
+		//==============================================================================================
+		add(selectVariable);
+		add(varDelta);
+		add(okButton);
+		add(sumary);
+		
+		//==============================================================================================
+		//	Component Location & Size Setting
+		//==============================================================================================
+		selectVariable.setBounds(5,35,120,30);
+		varDelta.setBounds(135,35,80,30);
+		okButton.setBounds(220,35,60,30);
+		sumary.setBounds(5,0,285,30);
+		
+		//==============================================================================================
+		//	Adding Listener
+		//==============================================================================================
+		
+		
+		//==============================================================================================
+		//	Initializing
+		//==============================================================================================
+	}
+}

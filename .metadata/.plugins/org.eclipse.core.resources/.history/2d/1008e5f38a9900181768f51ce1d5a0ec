@@ -1,0 +1,8 @@
+import javax.swing.JPanel;
+
+public class myPanel extends JPanel{
+	public myPanel() {
+		setSize(300,500);
+	}
+	
+}

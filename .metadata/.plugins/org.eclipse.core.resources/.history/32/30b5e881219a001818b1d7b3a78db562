@@ -1,0 +1,30 @@
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class IncreaseVariableTaskForm extends JPanel {
+	private String[] stringArray = {"1번 변수","2번 변수","3번 변수","4번 변수","5번 변수","6번 변수","7번 변수","8번 변수","9번 변수","10번 변수"};
+	private JComboBox selectVariable = new JComboBox(stringArray);
+	private JTextField varDelta = new JTextField(5); 
+	private JButton okButton = new JButton("추가");
+	private JLabel sumary = new JLabel("변수 증감 작업 추가");
+	
+	public IncreaseVariableTaskForm() {
+		setLayout(null);
+		setPreferredSize(new Dimension(200,140));
+		
+		add(selectVariable);
+		add(varDelta);
+		add(okButton);
+		add(sumary);
+		
+		selectVariable.setBounds(5,50,40,30);
+		varDelta.setBounds(50,50,100,30);
+		okButton.setBounds(160,50,30,30);
+		sumary.setBounds(5,5,185,30);
+	}
+}

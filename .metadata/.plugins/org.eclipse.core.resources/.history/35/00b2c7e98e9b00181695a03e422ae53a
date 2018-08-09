@@ -1,0 +1,85 @@
+import java.awt.Dimension;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+//==================================================================================================
+//	Remove Task Form
+//	작업을 제거하는 Form
+//==================================================================================================
+public class MouseMoveTask extends JPanel {
+
+	//==============================================================================================
+	//	Variable Declare
+	//==============================================================================================
+	public String[] textArray = { "1번 변수","2번 변수","3번 변수","4번 변수","5번 변수",
+								  "6번 변수","7번 변수","8번 변수","9번 변수","10번 변수"};
+
+	//==============================================================================================
+	//	JComponent Declare
+	//==============================================================================================
+	private JTextField xData = new JTextField(5);
+	private JTextField yData = new JTextField(5); 
+	private JComboBox<String> xSelection = new JComboBox<String>(textArray);
+	private JComboBox<String> ySelection = new JComboBox<String>(textArray);
+	private JRadioButton xIsVar = new JRadioButton();
+	private JRadioButton yIsVar = new JRadioButton();
+	private JRadioButton xIsCon = new JRadioButton();
+	private JRadioButton yIsCon = new JRadioButton();
+	private ButtonGroup xRG = new ButtonGroup();
+	private ButtonGroup yRG = new ButtonGroup();
+	private JButton okButton = new JButton("추가");
+	private JButton autoButton = new JButton("마우스 파인더");
+	private JLabel sumary = new JLabel("마우스 이동 작업 추가");
+	private JLabel x = new JLabel("X :");
+	private JLabel y = new JLabel("Y :");
+	
+	//==============================================================================================
+	//	CONSTRUCTOR
+	//==============================================================================================
+	public MouseMoveTask() {
+		
+		//======================================================================================
+		//	Layout Setting
+		//======================================================================================
+		setLayout(null);
+		setPreferredSize(new Dimension(350,75));
+		
+		//======================================================================================
+		//	Adding Components
+		//======================================================================================
+		xRG.add(xIsVar);	xRG.add(xIsCon);
+		yRG.add(yIsVar);	yRG.add(yIsCon);
+		add(xIsVar);		add(xIsCon);
+		add(yIsVar);		add(yIsCon);
+		add(xData);			add(yData);
+		add(xSelection);	add(ySelection);
+		add(x); 			add(y);
+		add(okButton);		add(autoButton);
+		add(sumary);
+	
+		//======================================================================================
+		//	Compents Location & Size Setting
+		//======================================================================================
+		x.setBounds(5,40,20,30);
+		y.setBounds(135,40,20,30);
+		xIsCon.setBounds(25,32,20,25);
+		xIsVar.setBounds(25,52,20,25);
+		yIsCon.setBounds(155,32,20,25);
+		yIsVar.setBounds(155,52,20,25);
+		xData.setBounds(45,35,85,20);
+		yData.setBounds(175,35,85,20);
+		xSelection.setBounds(45,55,85,20);
+		ySelection.setBounds(175,55,85,20);
+		okButton.setBounds(270,35,70,30);
+		sumary.setBounds(5,0,285,30);
+		
+		
+	}
+}

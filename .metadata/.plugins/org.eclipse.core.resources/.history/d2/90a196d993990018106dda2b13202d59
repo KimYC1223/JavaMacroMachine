@@ -1,0 +1,65 @@
+import java.awt.Dimension;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.JPanel;
+
+
+public class myPanel extends JPanel {
+	
+	JLabel la = new JLabel("No Mouse Event");
+	public myPanel() {
+		setLayout(null);
+		// setPreferredSize(new Dimension(350, 250));
+		setPreferredSize(new Dimension(1920, 1080));
+		addMouseListener(new MyMouseListener());
+		addMouseMotionListener(new MyMouseListener());
+		add(la);
+	}
+	
+	class MyMouseListener implements MouseListener, MouseMotionListener {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			la.setText("MouseClicked(" + e.getX() + "," + e.getY() + ")");
+			repaint();
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			la.setText("MousePressed(" + e.getX() + "," + e.getY() + ")");
+			repaint();
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			la.setText("MouseReleased(" + e.getX() + "," + e.getY() + ")");
+			repaint();
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			setBackground(Color.CYAN);
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			setBackground(Color.YELLOW);
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			la.setText("MouseDragged(" + e.getX() + "," + e.getY() + ")");
+			repaint();
+		}
+
+		@Override
+	    public void mouseMoved(MouseEvent e) {
+	        la.setText("MouseMoved("+e.getX()+","+e.getY()+")");
+	        repaint();
+	    }
+
+	}
+
+}
+

@@ -1,0 +1,10 @@
+import java.awt.Dimension;
+import javax.swing.JPanel;
+
+public class myPanel extends JPanel{
+	public myPanel() {
+		setLayout(null);
+		setPreferredSize(new Dimension(330, 250));
+	}
+	
+}

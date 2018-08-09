@@ -1,0 +1,84 @@
+import java.awt.Dimension;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.JPanel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class myPanel extends JPanel {
+	
+	public JLabel la = new JLabel("No Mouse Event");
+	public JLabel la2 = new JLabel("No Keyboard Event");
+	
+	public myPanel() {
+		 setPreferredSize(new Dimension(350, 250));
+		//setPreferredSize(new Dimension(1920, 1080));
+		//addMouseListener(new MyMouseListener());
+		//addMouseMotionListener(new MyMouseListener());
+		this.addKeyListener(new ESC_Listener());
+		
+		add(la);
+		add(la2);
+		requestFocus();
+	}
+	
+	class MyMouseListener implements MouseListener, MouseMotionListener {
+		@Override
+		public void mouseClicked(MouseEvent e) {}
+		public void mousePressed(MouseEvent e) {}
+		public void mouseReleased(MouseEvent e) {}
+		public void mouseEntered(MouseEvent e) {}
+		public void mouseExited(MouseEvent e) {}
+		public void mouseDragged(MouseEvent e) {}
+
+		@Override	
+	    public void mouseMoved(MouseEvent e) {
+	        la.setText("MouseMoved("+e.getX()+","+e.getY()+")");
+	    }
+
+	}
+	
+	class ESC_Listener extends KeyAdapter{
+		String inputKey = null;
+		
+		public void keyPressed(KeyEvent e) {
+			nt key = e.getKeyCode();
+			   switch(key){   
+			   case KeyEvent.VK_UP:
+			    if(la.getY() <= 0)
+			     return;
+			    else
+			     la.setLocation(la.getX(),la.getY()-5);
+			    break;
+			    
+			   case KeyEvent.VK_DOWN:
+			    if(la.getY()+la.getHeight()+5 > getHeight())
+			     return;
+			    else
+			     la.setLocation(la.getX(),la.getY()+5);
+			    break;
+			    
+			   case KeyEvent.VK_LEFT:
+			    if(la.getX() <= 0)
+			     return;
+			    else
+			     la.setLocation(la.getX()-5,la.getY());
+			    break;
+			    
+			   case KeyEvent.VK_RIGHT:
+			    if(la.getX() + la.getWidth()+5 > getWidth())
+			     return;
+			    else
+			     la.setLocation(la.getX()+5,la.getY());
+			    break;
+			   }
+
+
+			
+		}
+	}
+
+}
+

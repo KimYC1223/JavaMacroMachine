@@ -1,0 +1,41 @@
+import java.awt.Dimension;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.JPanel;
+
+
+public class myPanel extends JPanel {
+	
+	public JLabel la = new JLabel("No Mouse Event");
+	
+	public myPanel() {
+		 setPreferredSize(new Dimension(350, 250));
+		//setPreferredSize(new Dimension(1920, 1080));
+		addMouseListener(new MyMouseListener());
+		addMouseMotionListener(new MyMouseListener());
+		addKeyListener(new ESC_Listener());
+		
+		add(la);
+		
+	}
+	
+	class MyMouseListener implements MouseListener, MouseMotionListener {
+		@Override
+		public void mouseClicked(MouseEvent e) {}
+		public void mousePressed(MouseEvent e) {}
+		public void mouseReleased(MouseEvent e) {}
+		public void mouseEntered(MouseEvent e) {}
+		public void mouseExited(MouseEvent e) {}
+		public void mouseDragged(MouseEvent e) {}
+
+		@Override
+	    public void mouseMoved(MouseEvent e) {
+	        la.setText("MouseMoved("+e.getX()+","+e.getY()+")");
+	    }
+
+	}
+
+}
+
