@@ -1,4 +1,4 @@
-# JavaMacroMachine
+# <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/135/spouting-whale_1f433.png" width="40">　JavaMacroMachine
 자바를 이용한 나만의 매크로머신을 만들어 본다.
 
 Java의 Robot Class를 이용하여 매크로 행동을 조작하고,
