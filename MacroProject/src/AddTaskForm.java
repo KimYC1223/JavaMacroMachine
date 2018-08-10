@@ -59,9 +59,9 @@ public class AddTaskForm extends JFrame{
 		}
 		
 		
-		//=========================================================
+		//===================================================================================
 		//	ITEM DESCRIPTION
-		//=========================================================
+		//===================================================================================
 		class DropdownListener implements ItemListener{
 			public void itemStateChanged(ItemEvent e) {
 				switch(e.getItem().toString()) {
@@ -112,9 +112,9 @@ public class AddTaskForm extends JFrame{
 		}
 		
 		
-		//=========================================================
+		//===================================================================================
 		//	BUTTON LISTENER
-		//=========================================================
+		//===================================================================================
 		class AddingButtonListener implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				Task myTask = null;
@@ -124,7 +124,7 @@ public class AddTaskForm extends JFrame{
 				
 				switch (selection.getSelectedItem().toString()) {
 				case "INCREASE_VARIABLE_TASK" :
-					targetPlane = new IncreaseVariableTaskForm();
+					targetPlane = new IncreaseVariableTaskForm(targetFrame);
 					
 					break;
 				case "MOUSE_MOVE_TASK" :
