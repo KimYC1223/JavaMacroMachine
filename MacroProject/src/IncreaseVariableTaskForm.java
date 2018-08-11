@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -109,36 +110,49 @@ public class IncreaseVariableTaskForm extends JPanel {
 	//=================================================================================
 	class myOkButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
-			int delta;
-			Task makingTask = null;
-			//=========================================================================
-			//	When conCheck is Selected
-			//=========================================================================
-			if (conCheck.isSelected()) {
-				try {
+			try {
+				int delta;
+				Task makingTask = null;
+				//=====================================================================
+				//	When conCheck is Selected
+				//=====================================================================
+				if (conCheck.isSelected()) {
 					delta=Integer.parseInt(varDelta.getText());
 					makingTask = new Task(Task.TYPE.INCREASE_VARIABLE_TASK);
 					makingTask.varCount = selectVariable.getSelectedIndex()+1;
 					makingTask.varDelta = delta;
 					makingTask.isCon = true;
-				} catch ( Exception e ) { }
-			}
+				}
+				//=====================================================================
+				//	When varCheck is Selected
+				//=====================================================================
+				else if (varCheck.isSelected()) {
+					delta=applyVariable.getSelectedIndex()+1;
+					makingTask = new Task(Task.TYPE.INCREASE_VARIABLE_TASK);
+					makingTask.varCount = selectVariable.getSelectedIndex()+1;
+					makingTask.targetVarIndex = delta;
+					makingTask.isCon = false;
+				}
+				
+				//=====================================================================
+				//	Adding List & Refresh List
+				//=====================================================================
+				Main.myTaskList.add(makingTask);
+				Main.reload();
+				
 			//=========================================================================
-			//	When varCheck is Selected
+			//	Error Reporting
 			//=========================================================================
-			else if (varCheck.isSelected()) {
-				delta=applyVariable.getSelectedIndex()+1;
-				makingTask = new Task(Task.TYPE.INCREASE_VARIABLE_TASK);
-				makingTask.varCount = selectVariable.getSelectedIndex()+1;
-				makingTask.TargetVarIndex = delta;
-				makingTask.isCon = false;
+			} catch (Exception excep) {
+				JOptionPane.showMessageDialog(null, 
+						"에러가 발생했습니다.", "에러", 
+						JOptionPane.ERROR_MESSAGE);
+
 			}
 			
 			//=========================================================================
-			//	Adding List & Refresh List
+			//	CLosing Frame
 			//=========================================================================
-			Main.myTaskList.add(makingTask);
-			Main.reload();
 			JComponent comp = (JComponent) event.getSource();
 			Window win = SwingUtilities.getWindowAncestor(comp);
 			win.dispose();

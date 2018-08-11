@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -152,7 +153,47 @@ public class MouseMoveTask extends JPanel {
 	//==============================================================================================
 	class OkListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
+			try {
+				Task makingTask = new Task(Task.TYPE.MOUSE_MOVE_TASK);
+				//==================================================================================
+				//	When Selection X is Variable
+				//==================================================================================
+				if ( xIsVar.isSelected() ) {
+					makingTask.isCon = false;
+					makingTask.targetVar = xSelection.getSelectedIndex()+1;
+				} else if ( xIsCon.isSelected() ) {
+					makingTask.isCon = true;
+					makingTask.X_position = Integer.parseInt(xData.getText());
+				} 
 				
+				//==================================================================================
+				//	When Selection X is Variable
+				//==================================================================================
+				if ( yIsVar.isSelected() ) {
+					makingTask.isCon2 = false;
+					makingTask.targetVar2 = ySelection.getSelectedIndex()+1;
+				} else if ( yIsCon.isSelected() ) {
+					makingTask.isCon2 = true;
+					makingTask.Y_position = Integer.parseInt(yData.getText());
+				} 
+				//==================================================================================
+				//	Adding List & Refresh List
+				//==================================================================================
+				Main.myTaskList.add(makingTask);
+				Main.reload();
+				
+			//======================================================================================
+			//	Error Reporting
+			//======================================================================================
+			} catch ( Exception excep) {
+				JOptionPane.showMessageDialog(null, "에러가 발생했습니다.",
+						"에러", JOptionPane.ERROR_MESSAGE);
+			}
+			
+			//======================================================================================
+			//	CLosing Frame
+			//======================================================================================
+			ancestorFrame.dispose();
 		}
 	}
 }

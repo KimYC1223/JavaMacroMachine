@@ -30,6 +30,7 @@ public class Task implements Serializable{
 	public int X_position;				// Mouse Move
 	public int Y_position;				// Mouse Move
 	public String mouseButton;			// Mouse Click
+	public String mouseClickType;		// Mouse Click
 	public int clickCount;				// Mouse Click
 	public int wheelCount;				// Mouse Wheel
 	public int keyCode;					// Keyboard Input
@@ -40,10 +41,10 @@ public class Task implements Serializable{
 	public int varSet;					// Set Variable
 	public int delayTime;				// Wait
 	
-	public int TargetVarIndex;			// isVar
-	public int TargetVar;				// isVar
-	public int TargetVarIndex2;			// isVar2
-	public int TargetVar2;				// isVar2
+	public int targetVarIndex;			// isVar
+	public int targetVar;				// isVar
+	public int targetVarIndex2;			// isVar2
+	public int targetVar2;				// isVar2
 	public boolean isCon = true;		// con Check Value
 	public boolean isCon2 = true;		// con Check Value
 	
@@ -59,14 +60,14 @@ public class Task implements Serializable{
 		//=============================================================================
 		if (isTYPE == Task.TYPE.MOUSE_MOVE_TASK ) {
 			if ( isCon==true && isCon2 == true)
-				result =  "마우스를 X="+X_position+",Y="+Y_position+"(으)로 옮깁니다.";
+				result =  "마우스를 X="+X_position+", Y="+Y_position+"(으)로 옮깁니다.";
 			else if ( isCon==false && isCon2 == false)
-				result =  "마우스를 X="+TargetVarIndex+"번 변수,Y="+
-											TargetVarIndex2+"번 변수로 옮깁니다.";
+				result =  "마우스를 X="+targetVarIndex+"번 변수, Y="+
+											targetVarIndex2+"번 변수로 옮깁니다.";
 			else if ( isCon==true && isCon2 == false)
-				result =  "마우스를 X="+X_position+",Y="+TargetVarIndex2+"번 변수로 옮깁니다.";
+				result =  "마우스를 X="+X_position+", Y="+targetVarIndex2+"번 변수로 옮깁니다.";
 			else if ( isCon==false && isCon2 == true)
-				result =  "마우스를 X="+TargetVarIndex+"번 변수,Y="
+				result =  "마우스를 X="+targetVarIndex+"번 변수, Y="
 											+Y_position+"(으)로 옮깁니다.";
 			return result+"\n";				// Return
 		}
@@ -77,7 +78,11 @@ public class Task implements Serializable{
 		if ( isCon ) {
 			switch(isTYPE) {
 			case MOUSE_CLICK_TASK :
-				result =  "마우스 "+mouseButton+"을 "+clickCount+"번 클릭합니다.";
+				if (mouseClickType=="CLICK")
+					result =  "마우스 "+mouseButton+"을 "+clickCount+"번 클릭합니다.";
+				else if (mouseClickType == "PRESS")
+					result =  "마우스 "+mouseButton+"을 누르고 있습니다.";
+				else result =  "마우스 "+mouseButton+"을 뗍니다.";
 				break;
 			case MOUSE_WHEEL_TASK :
 				result =  "마우스 휠을 "+wheelCount+"번 굴립니다.";
@@ -107,10 +112,10 @@ public class Task implements Serializable{
 		} else if ( !isCon ) {
 			switch(isTYPE) {
 			case MOUSE_CLICK_TASK :
-				result =  "마우스 "+mouseButton+"을 "+TargetVarIndex+"번 변수만큼 클릭합니다.";
+				result =  "마우스 "+mouseButton+"을 "+targetVarIndex+"번 변수만큼 클릭합니다.";
 				break;
 			case MOUSE_WHEEL_TASK :
-				result =  "마우스 휠을 "+TargetVarIndex+"번 변수만큼 굴립니다.";
+				result =  "마우스 휠을 "+targetVarIndex+"번 변수만큼 굴립니다.";
 				break;
 			case KEYBOARD_INPUT_TASK :
 				result =  "키보드로 \'"+KeyEvent.getKeyText(keyCode)+"\'을/를 입력합니다.";
@@ -119,16 +124,16 @@ public class Task implements Serializable{
 				result =  "키보드로 문장 \""+inputString+"\"을/를 입력합니다.";
 				break;
 			case NUMBER_INPUT_TASK :
-				result =  "키보드로 "+TargetVarIndex+"번 변수를 입력합니다.";
+				result =  "키보드로 "+targetVarIndex+"번 변수를 입력합니다.";
 				break;
 			case SET_VARIABLE_TASK :
-				result =  varCount+"번째 변수에 "+TargetVarIndex+"번 변수를 대입합니다.";
+				result =  varCount+"번째 변수에 "+targetVarIndex+"번 변수를 대입합니다.";
 				break;
 			case INCREASE_VARIABLE_TASK :
-				result =  varCount+"번째 변수에 "+TargetVarIndex+"번 변수만큼 증감합니다.";
+				result =  varCount+"번째 변수에 "+targetVarIndex+"번 변수만큼 증감합니다.";
 				break;
 			case WAIT_TASK :
-				result = TargetVarIndex+"번 변수의 저장된 값  * 1ms대기합니다.";
+				result = targetVarIndex+"번 변수의 저장된 값  * 1ms대기합니다.";
 				break;
 			}
 		}

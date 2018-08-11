@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -107,23 +108,36 @@ public class MouseWheelTask extends JPanel {
 	//==============================================================================================
 	class MyMouseClickActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
-			ancestorFrame.dispose();
-			
+		
 			try {
-				Robot robot = new Robot();
-				robot.delay(1000);
-				robot.mouseMove(500, 500);
-				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-				robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-				robot.mouseWheel(Integer.parseInt(wheelCount.getText()));
-				robot.delay(1000);
-				for (int i = 0; i< Integer.parseInt(wheelCount.getText()) ; i++) {
-					robot.mouseWheel(-1);
-					robot.delay(100);
+				Task makingTask = new Task(Task.TYPE.MOUSE_WHEEL_TASK);
+				if(isVar.isSelected()) {
+					makingTask.isCon = false;
+					makingTask.targetVarIndex = varBox.getSelectedIndex()+1;
+				} if (isCon.isSelected()) {
+					makingTask.isCon = true;
+					makingTask.wheelCount = Integer.parseInt(wheelCount.getText());
 				}
-			} catch( Exception e) {
 				
+				//==================================================================================
+				//	Adding List & Refresh List
+				//==================================================================================
+				Main.myTaskList.add(makingTask);
+				Main.reload();
+				
+			//======================================================================================
+			//	Error Reporting
+			//======================================================================================
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, 
+						"에러가 발생했습니다.", "에러", 
+						JOptionPane.ERROR_MESSAGE);
 			}
+			
+			//======================================================================================
+			//	CLosing Frame
+			//======================================================================================
+			ancestorFrame.dispose();
 		}
 	}
 	
